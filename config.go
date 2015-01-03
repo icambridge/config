@@ -4,14 +4,24 @@ import (
 	"bufio"
 	"os"
 	"strings"
+	"strconv"
 )
 
 type Config struct {
 	m map[string]string
 }
 
-func (c Config) GetString(key string) string {
-	return c.m[key]
+func (c Config) GetString(key string) (string, error) {
+	return c.m[key], nil
+}
+
+func (c Config) GetInt(key string) (int, error) {
+	s, err := c.GetString(key)
+	if err != nil {
+		return -1, err
+	}
+	i, err := strconv.Atoi(s)
+	return i, err
 }
 
 func NewConfig(filename string) (Config, error) {
