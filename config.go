@@ -20,8 +20,20 @@ func (c Config) GetInt(key string) (int, error) {
 	if err != nil {
 		return -1, err
 	}
+	
 	i, err := strconv.Atoi(s)
 	return i, err
+}
+
+func (c Config) GetFloat(key string) (float64, error) {
+	s, err := c.GetString(key)
+	
+	if err != nil {
+		return -1.0, err
+	}
+	
+	f, err := strconv.ParseFloat(s, 10)
+	return f, err
 }
 
 func NewConfig(filename string) (Config, error) {

@@ -47,3 +47,25 @@ func Test_GetInt_Returns_IntValue(t *testing.T) {
 		return
 	}
 }
+
+func Test_GetFloat_Returns_FloatValue(t *testing.T) {
+
+	c, err := NewConfig("example/test.conf")
+
+	if err != nil {
+		t.Errorf("%v", err)
+		return
+	}
+
+	s, err := c.GetFloat("float")
+
+	if err != nil {
+		t.Errorf("%v", err)
+		return
+	}
+
+	if expected := 5.1; s != expected {
+		t.Errorf("Expected %q, got %q", expected, s)
+		return
+	}
+}
