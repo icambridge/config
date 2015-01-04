@@ -3,8 +3,8 @@ package config
 import (
 	"bufio"
 	"os"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 type Config struct {
@@ -28,7 +28,7 @@ func NewConfig(filename string) (Config, error) {
 	c := Config{}
 	m := map[string]string{}
 	f, err := os.Open(filename)
-	
+
 	if err != nil {
 		return c, err
 	}
